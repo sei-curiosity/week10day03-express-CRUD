@@ -1,11 +1,11 @@
 /* packages */
-var path        = require('path');
-var logger      = require('morgan'); //for logging only
-var express     = require('express');
-var hbs         = require('hbs');
+let path        = require('path');
+let logger      = require('morgan'); //for logging only
+let express     = require('express');
+let hbs         = require('hbs');
 /* app settings*/
-var app         = express();
-var port        = process.env.PORT || 3000;
+let app         = express();
+let port        = process.env.PORT || 3000;
 /* set up the application params*/
 
 // log
@@ -21,7 +21,7 @@ app.get('/', function(req,res) {
 
 /* INDEX TODOS */
 app.get('/todos', function(req,res) {
-  var seededTodos = [
+  let seededTodos = [
     {
       description: "get beer",
       urgent: true

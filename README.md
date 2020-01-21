@@ -1,6 +1,6 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 <br/>
- ![Misk Logo](https://raw.githubusercontent.com/hamoghamdi/tic-tac-toe-project/master/ma-logo-1.png)
+ ![Misk Logo](https://misk.org.sa/miskacademy/wp-content/uploads/sites/5/2019/04/ma-logo-1.png)
 # Create and Read with Express
 
 ### Objectives

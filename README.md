@@ -4,8 +4,7 @@
 
 ### Objectives
 
-- Understand `module.exports` and why we use it
-- Write an HTML form that can make POST requests
+- Write an HTML form that can make POST/PUT requests
 - Describe how inputs transform into a req.body object on the server side
 - Use bodyParser to read parameters passed from forms via POST requests
 - Build RESTful routes that are wired to the correct semantically named view
@@ -52,9 +51,7 @@ So in your `/labs/express` folder, you should see a starter application named `s
 
 1. `cd` into `starter-code-hbs` and run the command `npm install` which will read the `package.json` file and install all of the dependencies specified in a `node_modules` folder.
 
-2. Then, add a "dev" script to your `package.json` that has the value `nodemon server.js`. Run `npm run dev` to start our server.
-
-    ![](https://i.imgur.com/SNHzqDp.png)
+2. Then, add a "start" script to your `package.json` that has the value `nodemon server.js`. Run `npm start` to start our server.
 
     In `server.js`, notice that we have a `/todos` route. It contains `var seededTodos` which is an array of 2 seeded todos:
 
@@ -100,7 +97,7 @@ Now move the routes pertaining to todos into that todos.js file.
 app.get('/todos', function(req,res) {
   var seededTodos = [
     {
-      description: "get beer",
+      description: "get juicer",
       urgent: true
     }, {
       description: "dry cleaning",
@@ -173,13 +170,6 @@ router.get('/', function(req,res) {
 <br>
 
 
-&#x1F535; **YOU DO - PART 2**
-
-1. Check out the `views/todos/index.hbs` file. Using Handlebars, add some code that shows us how many todos we have. Like so:
-
-    ![](https://i.imgur.com/4VhZNh3.png)
-
-1. Add a 3rd (or more!) todo to the `seededTodos` object.
 
 <br>
 
@@ -201,7 +191,7 @@ file.
     module.exports = {
      seededTodos: [
         {
-          description: "get beer",
+          description: "get juice",
           urgent: true
         }, {
           description: "dry cleaning",
@@ -246,13 +236,6 @@ You'll start to see the necessity of `module.exports` once we add
 models and more routes to our application.  Keeping everything in `server.js` will quickly become a headache.
 
 <br>
-
-&#x1F535; **YOU DO**
-
-Add `module.exports` to your app to DRY up your code.
-
-<br>
-
 
 ## Get To Know The Code - REST-ful Routing
 
@@ -346,13 +329,12 @@ Don't worry about this idea of nested resources for now, but know this is where 
 
 Convention dictates that the `show` route returns one instance of a given resource.
 
-&#x1F535; **I DO, THEN YOU DO**
+&#x1F535; **Review the attached code**
 
 In previous lessons we learned about 'wildcard params'. (e.g. - `http://localhost:3000/:id`)
 
 Can someone remind me what a wildcard is and how we use it?
 
-EXCERCISE
 
 1) Create a SHOW route for a single Todo
 
@@ -440,12 +422,6 @@ All forms must have a `method` and an `action`.
 
 <br>
 
-&#x1F535; **YOU DO**
-
-Walk through the steps above to add a basic skeleton form to your app.
-
-<br>
-
 #### Let's add some form fields!
 
 Luckily, form fields aren't that different from something we've seen before in JS – an object. In an object there are keys & values. Each input in a form is a key/value pair. Let's see a semi-complete example & dissect it.
@@ -507,11 +483,6 @@ Boom! Form, done.
 
 <br>
 
-&#x1F535; **YOU DO**
-
-Finish fleshing out your form with the code above.
-
-<br>
 
 #### Server Side
 
@@ -546,14 +517,10 @@ Remember, the *new* action is just there to render the form to allow us to creat
 
 <br>
 
-&#x1F535; **YOU DO**
-
-We have our `views/todos/new.hbs` file that includes the form. Now write a NEW route to render it. Refer to the table earlier to determine what structure the path should have.
-
 
 
 <details>
-    <summary>New Todo Route Solution</summary>
+    <summary>New Todo Route </summary>
 
 ```js
 /* NEW TODO */
@@ -592,13 +559,12 @@ Get in groups of 3. Answer your question first, then work on the others. We'll c
 Awesome so now we have a form that renders on the page. So let's engage in some Error driven development.
 
 
-![](https://i.imgur.com/QyawZUf.png)
 <br>
 
 - What happens when we add data and click the submit button?
 - What's the difference between the 'new' route and 'create' route in terms of functionality?
 
-&#x1F535; **I DO, THEN YOU DO**
+&#x1F535; **Review the attached code**
 
 Build a todo CREATE route using `router.post`. Don't worry about accessing the params from the form yet. Just send a response back ("Create a new todo is working!") to the client so you can verify the route works.
 
@@ -638,13 +604,6 @@ By default, Express doesn't have the ability to read the body sent by POST reque
 
 We access it via the `body` property.
 
-#### moar configuration
-
-1. Install body-parser using npm
-
-```bash
-$ npm install --save body-parser
-```
 
 Remember this npm command will fetch the module in question, install it on our server, and load it into our `package.json`
 
@@ -724,11 +683,6 @@ Now the form data is accessible via `req.body`. Our next step is to add our todo
 
 <br>
 
-&#x1F535; **YOU DO**
-
-1. Complete the `.post` route so that it saves the value of `req.body` to our array.
-2. Use `res.redirect('/todos')` to redirect the route to the INDEX route rather than using `res.render(file)`
-
 <details>
     <summary>Todo create route Solution</summary>
 
@@ -749,37 +703,6 @@ router.post('/', function(req, res){
 </details>
 
 Why do we need to redirect after a `.post` action?
-
-
-<br>
-
-## LABTIME
-
-1. Build a SHOW route (`/todos/:id`) that will render individual todos in a  `show.hbs` view. **Break it down...**
-    - First, get the route working. Test it out by using `res.send("Show route is working")`
-    - Then, build a view and get it to `render` with `<h1>Show Route</h1>`
-    - Finally, add the code to display the todo. For example:
-
-    ![](https://i.imgur.com/Bi2U4Lw.png)
-
-2. Add a nav bar to your layout view with links to your INDEX (`/todos`) and NEW(`/todos/new`) routes. For example:
-
-    ![](https://i.imgur.com/32xDLQF.png)
-
-3. Make each todo on the INDEX page clickable (hint: use anchor tags) so that each individual todo, when clicked, will link to it's correct show page (like the image above).
-
-4. If there are no todos, the index page will display a `<p> you have no todos </p>`. (Hint #1: look up conditionals in the Handlebars documentation, Hint #2: You'll probably have to remove the `seededTodos` in `data.js` to test this out)
-
-5. Add an external stylesheet and javascript files to the app (check out the Express Views lesson).
-
-6. Add a `location` field to the seeded todos and the form.
-
-7. Create separate sections on your INDEX page for urgent and non-urgent todos.
-
-6. Create a view for your Home/Root route.
-
-1. Build INDEX, SHOW, NEW, and CREATE routes for a movie resource. Give each movie title and viewed fields
-
 
 
 <br>
@@ -1163,3 +1086,7 @@ Now go back and set up our edit form to send a PUT request.
 ```
 
 <br />
+
+### Codealong
+
+Now that we see from the attached example how we can work with the Views and change data in a static array we used as seed data. Now we will move on to implimenting the model and making sure our controller works with our model and our live database. The full CRUD operations will be performed on the model. The views will be rendered using HBS and an additional method-modifier package so as we can use forms to make Delete and Put requests which are not the defaults for the form operations.

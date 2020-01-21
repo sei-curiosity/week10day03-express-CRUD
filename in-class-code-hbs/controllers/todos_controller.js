@@ -10,12 +10,10 @@ router.get('/', function(req,res) {
   });
 });
 
-/* NEW TODO (view)*/
+/* NEW TODO */
 router.get('/new', function(req, res){
   res.render('todos/new');
 });
-
-/* UPDATE TODO FORM (view)*/
 
 /* SHOW TODO */
 router.get('/:id', function(req,res) {
@@ -38,8 +36,5 @@ router.post('/', function(req, res){
   res.redirect('/todos');
 });
 
-/* DELETE(using post)TODO */
-
-/* UPDATE(using post) TODO */
 
 module.exports = router;

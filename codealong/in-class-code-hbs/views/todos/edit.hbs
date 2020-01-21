@@ -1,0 +1,23 @@
+<form action="/todos/{{todo._id}}/edit?_method=PUT" method="POST">
+{{!-- the form action is changed using method override middleware so as PUT request can be made with the form --}}
+  <div>
+    <label for="description">description:</label>
+    <input type="text" name="description" value="{{todo.description}}">
+    {{!-- added the quotes around todo.description so as it takes the entire string rather than the 1st letter --}}
+  </div>
+  <div>
+    <label for="urgent">urgent:</label>
+    {{!-- unless is used to check for boolean expressions (unless true looks for false value in its arguent) --}}
+    {{#unless todo.urgent}}
+    <span>yes</span><input type="radio" name="urgent" value="true">
+    <span>no</span><input type="radio" name="urgent" value="false" checked>
+    {{else}}
+    <span>yes</span><input type="radio" name="urgent" value="true" checked>
+    <span>no</span><input type="radio" name="urgent" value="false" >
+    {{/unless}}
+  </div>
+  <div>
+    <input type="submit" value="Update Todo">
+  </div>
+  <a href="/todos">All TodoItems</a>
+</form>

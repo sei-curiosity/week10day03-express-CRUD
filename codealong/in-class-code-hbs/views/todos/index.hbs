@@ -1,0 +1,10 @@
+<h1> Todos </h1>
+<ul>
+  {{#each todos}}
+    <li>Description: {{description}}</li>
+    <li>Urgent: {{urgent}}</li>
+    <a href="/todos/{{this._id}}">Show Todo</a>
+    <br><br>
+  {{/each}}
+</ul>
+<a href="/todos/new">Add Todo</a>

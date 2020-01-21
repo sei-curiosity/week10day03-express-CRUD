@@ -1,7 +1,7 @@
 module.exports = {
   seededTodos: [
     {
-      description: "get beer",
+      description: "get juice",
       urgent: true
     }, {
       description: "dry cleaning",

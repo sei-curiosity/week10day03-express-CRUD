@@ -1,0 +1,8 @@
+<h1>Todo - {{todo.description}}</h1>
+<p>Urgent: {{todo.urgent}}</p>
+
+<form method="POST" action="/todos/{{todo._id}}?_method=DELETE">
+    <button type="submit">DELETE</button>
+</form>
+<a href="/todos/{{todo._id}}/edit">UPDATE</a>
+<a href="/todos">All Todoitems</a>
